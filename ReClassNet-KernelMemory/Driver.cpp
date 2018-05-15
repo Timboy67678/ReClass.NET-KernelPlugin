@@ -1,5 +1,8 @@
 #include "Driver.h"
 
+#include <Shlwapi.h>
+#pragma comment(lib, "Shlwapi.lib")
+
 DWORD __byte_ret_dummy = 0;
 
 CReclassDriver& CReclassDriver::Instance()
@@ -102,7 +105,7 @@ bool CReclassDriver::QueryMemory(DWORD process_id, DWORD_PTR address, MEMORY_BAS
 {
 	if (!m_Loaded) return false;
 
-	RC_QUERY_VIRTUAL_MEMORY vquery = {0};
+	RC_QUERY_VIRTUAL_MEMORY vquery{};
 	vquery.ProcessId = process_id;
 	vquery.BaseAddress = (ULONGLONG)address;
 
@@ -125,8 +128,7 @@ bool CReclassDriver::ProcessInfo(DWORD process_id, KernelProcessInfo* process_in
 {
 	if (!m_Loaded) return false;
 
-	RC_PROCESS_INFORMATION proc;
-	ZeroMemory(&proc, sizeof proc);
+	RC_PROCESS_INFORMATION proc{};
 
 	if(DeviceIoControl(m_driver_handle, RECLASS_KERNEL_IOCTL_PROCESS_INFORMATION, &process_id, sizeof(DWORD), &proc, sizeof proc, &__byte_ret_dummy, NULL) == TRUE)
 	{

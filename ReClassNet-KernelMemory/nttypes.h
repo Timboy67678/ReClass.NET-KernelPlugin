@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#pragma comment(lib, "ntdll.lib")
 
 typedef enum _KWAIT_REASON
 {

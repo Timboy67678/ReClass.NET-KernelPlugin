@@ -1,10 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <memory>
-#include <string>
 #include <experimental/filesystem>
-#include <stdarg.h>
 
 #include "ReClassNET_Plugin.hpp"
 
