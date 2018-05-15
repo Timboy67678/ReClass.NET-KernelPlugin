@@ -1,27 +1,5 @@
 #include "Driver.h"
 
-#include <fstream>
-#include <functional>
-
-void WriteLog(const char*fmt, ...)
-{
-	static std::ofstream __log_file{};
-
-	if (!__log_file.is_open())
-		__log_file.open("kernel.plugin.log");
-
-	char buffer[2048] = { 0 };
-
-	va_list va;
-	va_start(va, fmt);
-	vsprintf_s(buffer, fmt, va);
-	va_end(va);
-
-	__log_file << buffer;
-	__log_file.flush();
-	__log_file << std::endl;
-}
-
 DWORD __byte_ret_dummy = 0;
 
 CReclassDriver& CReclassDriver::Instance()

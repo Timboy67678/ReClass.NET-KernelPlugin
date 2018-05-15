@@ -112,5 +112,3 @@ private:
 };
 
 namespace { CReclassDriver& Kernel() { return CReclassDriver::Instance(); } }
-
-void WriteLog(const char* fmt, ...);
